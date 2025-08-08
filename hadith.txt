@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hadithaki.ai - AI-Powered Hadith Verification</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 50%, #a7f3d0 100%);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .animate-pulse-slow {
+            animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #10b981, #059669, #047857);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .button-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .button-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgba(16, 185, 129, 0.3), 0 10px 10px -5px rgba(16, 185, 129, 0.1);
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-item {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 0.8s ease-out forwards;
+        }
+        
+        .feature-item:nth-child(1) { animation-delay: 0.1s; }
+        .feature-item:nth-child(2) { animation-delay: 0.2s; }
+        .feature-item:nth-child(3) { animation-delay: 0.3s; }
+        .feature-item:nth-child(4) { animation-delay: 0.4s; }
+        
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .glow-effect {
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.3);
+        }
+        
+        .hero-pattern {
+            background-image: radial-gradient(circle at 25% 25%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+                            radial-gradient(circle at 75% 75%, rgba(5, 150, 105, 0.1) 0%, transparent 50%);
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen">
+    <!-- Header -->
+    <header class="relative">
+        <div class="absolute inset-0 glass-effect"></div>
+        <div class="relative max-w-6xl mx-auto px-6 py-6">
+            <div class="flex items-center justify-center">
+                <div class="flex items-center space-x-4 animate-float">
+                    <!-- Ultra Modern Owl Logo -->
+                    <div class="w-14 h-14 relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-full animate-pulse-slow opacity-20"></div>
+                        <svg viewBox="0 0 100 100" class="w-full h-full relative z-10">
+                            <!-- Outer glow -->
+                            <circle cx="50" cy="50" r="40" fill="url(#outerGlow)" opacity="0.3"/>
+                            <!-- Main circle with gradient -->
+                            <defs>
+                                <linearGradient id="owlGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#10b981"/>
+                                    <stop offset="100%" style="stop-color:#059669"/>
+                                </linearGradient>
+                                <radialGradient id="outerGlow">
+                                    <stop offset="0%" style="stop-color:#10b981;stop-opacity:0.8"/>
+                                    <stop offset="100%" style="stop-color:#10b981;stop-opacity:0"/>
+                                </radialGradient>
+                            </defs>
+                            <!-- Main owl circle -->
+                            <circle cx="50" cy="50" r="28" fill="none" stroke="url(#owlGradient)" stroke-width="3"/>
+                            <!-- Minimalist ear tufts -->
+                            <path d="M 35 28 Q 32 22 38 32" fill="none" stroke="url(#owlGradient)" stroke-width="2.5" stroke-linecap="round"/>
+                            <path d="M 65 28 Q 68 22 62 32" fill="none" stroke="url(#owlGradient)" stroke-width="2.5" stroke-linecap="round"/>
+                            <!-- Modern eyes -->
+                            <circle cx="42" cy="47" r="2.5" fill="#000000"/>
+                            <circle cx="58" cy="47" r="2.5" fill="#000000"/>
+                            <!-- Subtle beak -->
+                            <path d="M 50 53 L 48 57 L 52 57 Z" fill="#374151"/>
+                            <!-- Geometric face accent -->
+                            <path d="M 50 38 Q 46 42 50 46 Q 54 42 50 38" fill="none" stroke="url(#owlGradient)" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <h1 class="text-5xl font-black text-gradient tracking-tight">Hadithaki.ai</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-20 pb-24 px-6 hero-pattern overflow-hidden">
+        <div class="max-w-7xl mx-auto text-center relative z-10">
+            <div class="mb-8">
+                <span class="inline-block bg-gradient-to-r from-emerald-500 to-green-600 text-white px-6 py-2 rounded-full text-sm font-semibold tracking-wide uppercase shadow-lg">
+                    AI-Powered Verification
+                </span>
+            </div>
+            
+            <h2 class="text-7xl md:text-8xl font-black text-gray-900 mb-8 leading-none tracking-tight">
+                Verify Hadith.<br>
+                <span class="text-gradient bg-clip-text">Instantly.</span><br>
+                <span class="text-gray-700">Authentically.</span>
+            </h2>
+            
+            <p class="text-2xl text-gray-600 mb-16 max-w-4xl mx-auto leading-relaxed font-light">
+                Revolutionary AI technology meets Islamic scholarship. Get instant authenticity verification 
+                from trusted collections with scholar-grade accuracy.
+            </p>
+            
+            <!-- Modern CTA -->
+            <div class="glass-effect rounded-3xl p-10 mb-20 max-w-3xl mx-auto glow-effect">
+                <div class="text-center">
+                    <h3 class="text-3xl font-bold text-gray-900 mb-6">Start Your Verification Journey</h3>
+                    <p class="text-gray-600 text-lg mb-8 font-light">Join 50,000+ Muslims worldwide who trust our AI for authentic Hadith verification</p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                        <button class="bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-bold py-5 px-10 rounded-2xl button-hover text-lg shadow-xl">
+                            🚀 Verify Now - Free
+                        </button>
+                        <button class="bg-white/50 backdrop-blur-sm border border-emerald-200 text-emerald-700 font-semibold py-5 px-8 rounded-2xl button-hover text-lg">
+                            📚 View Demo
+                        </button>
+                    </div>
+                    
+                    <div class="mt-6 text-sm text-gray-500">
+                        ✨ No signup required • Instant results • 100% Free
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Floating geometric shapes -->
+        <div class="absolute top-20 left-10 w-20 h-20 bg-emerald-200 rounded-full opacity-20 animate-float"></div>
+        <div class="absolute top-40 right-20 w-16 h-16 bg-green-300 rounded-full opacity-30 animate-float" style="animation-delay: 2s;"></div>
+        <div class="absolute bottom-20 left-1/4 w-12 h-12 bg-emerald-400 rounded-full opacity-25 animate-float" style="animation-delay: 4s;"></div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-24 relative">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h3 class="text-5xl font-black text-gray-900 mb-6">Why Choose Hadithaki.ai?</h3>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto font-light">
+                    Get instant, authentic Hadith verification with detailed explanations from trusted sources
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="glass-effect p-8 rounded-3xl text-center card-hover group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-emerald-400 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <span class="text-white font-bold text-2xl">⚡</span>
+                    </div>
+                    <h4 class="text-2xl font-bold text-gray-900 mb-4">Instant Verification</h4>
+                    <p class="text-gray-600 leading-relaxed">Drop in the quote and get it checked across the major Hadith collections — in a matter of seconds.</p>
+                </div>
+                
+                <div class="glass-effect p-8 rounded-3xl text-center card-hover group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-emerald-400 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <span class="text-white font-bold text-2xl">📚</span>
+                    </div>
+                    <h4 class="text-2xl font-bold text-gray-900 mb-4">Trusted Sources. Precise Answers.</h4>
+                    <p class="text-gray-600 leading-relaxed">Hadithaki.ai pulls directly from the most reliable Hadith collections — Sahih Bukhari, Sahih Muslim, Tirmidhi, Abu Dawood, and more.</p>
+                </div>
+                
+                <div class="glass-effect p-8 rounded-3xl text-center card-hover group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-emerald-400 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <span class="text-white font-bold text-2xl">💡</span>
+                    </div>
+                    <h4 class="text-2xl font-bold text-gray-900 mb-4">No Assumptions, Just Authentic Knowledge</h4>
+                    <p class="text-gray-600 leading-relaxed">Get verified, authentic knowledge without guesswork or assumptions.</p>
+                </div>
+            </div>
+            
+            <div class="glass-effect p-10 rounded-3xl max-w-5xl mx-auto glow-effect">
+                <h4 class="text-3xl font-bold text-gray-900 mb-8 text-center">Not Just Verified — Explained.</h4>
+                <p class="text-lg text-gray-600 text-center mb-8 font-light">Hadithaki.ai doesn't just show you a Hadith, It gives you the full picture</p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4 feature-item group">
+                            <div class="w-8 h-8 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center mt-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                <span class="text-white text-sm">📋</span>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-gray-900 mb-2 text-lg">Exact source</h5>
+                                <p class="text-gray-600 leading-relaxed">Book & Hadith number with precise citations</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4 feature-item group">
+                            <div class="w-8 h-8 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center mt-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                <span class="text-white text-sm">🏆</span>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-gray-900 mb-2 text-lg">Authenticity rating</h5>
+                                <p class="text-gray-600 leading-relaxed">Sahih, Hasan, Daif, etc. with clear classifications</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4 feature-item group">
+                            <div class="w-8 h-8 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center mt-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                <span class="text-white text-sm">📚</span>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-gray-900 mb-2 text-lg">A simple explanation</h5>
+                                <p class="text-gray-600 leading-relaxed">So you know what it means in clear, understandable language</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4 feature-item group">
+                            <div class="w-8 h-8 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center mt-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                <span class="text-white text-sm">💫</span>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-gray-900 mb-2 text-lg">Real-life application</h5>
+                                <p class="text-gray-600 leading-relaxed">How to put the Hadith into action in your daily life</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modern Footer -->
+    <footer class="relative py-12">
+        <div class="absolute inset-0 glass-effect"></div>
+        <div class="relative max-w-6xl mx-auto px-6">
+            <div class="text-center">
+                <div class="flex items-center justify-center space-x-3 mb-4">
+                    <div class="w-8 h-8">
+                        <svg viewBox="0 0 100 100" class="w-full h-full">
+                            <circle cx="50" cy="50" r="25" fill="none" stroke="#10b981" stroke-width="3"/>
+                            <path d="M 35 28 Q 32 22 38 32" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M 65 28 Q 68 22 62 32" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="42" cy="47" r="2" fill="#10b981"/>
+                            <circle cx="58" cy="47" r="2" fill="#10b981"/>
+                            <path d="M 50 53 L 48 57 L 52 57 Z" fill="#10b981"/>
+                        </svg>
+                    </div>
+                    <span class="text-xl font-bold text-gray-700">Hadithaki.ai</span>
+                </div>
+                <p class="text-gray-500 font-light">&copy; 2024 Hadithaki.ai. Bridging tradition with technology.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
