@@ -86,6 +86,52 @@
             background-image: radial-gradient(circle at 25% 25%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
                             radial-gradient(circle at 75% 75%, rgba(5, 150, 105, 0.1) 0%, transparent 50%);
         }
+        
+        .loading-spinner {
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .arabic-text {
+            font-family: 'Amiri', 'Times New Roman', serif;
+            line-height: 1.8;
+            font-size: 1.1em;
+        }
+        
+        .section-hidden {
+            display: none;
+        }
+        
+        .tab-active {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+        }
+        
+        .tab-inactive {
+            background: rgba(255, 255, 255, 0.3);
+            color: #065f46;
+            backdrop-filter: blur(10px);
+        }
+        
+        .tab-inactive:hover {
+            background: rgba(255, 255, 255, 0.5);
+            transform: translateY(-1px);
+        }
     </style>
 </head>
 <body class="gradient-bg min-h-screen">
@@ -95,7 +141,6 @@
         <div class="relative max-w-6xl mx-auto px-6 py-6">
             <div class="flex items-center justify-center">
                 <div class="flex items-center space-x-4 animate-float">
-                    <!-- Exact Logo Image -->
                     <div class="w-14 h-14 relative">
                         <img src="https://i.ibb.co/yJnzyhG/screen-svg.png" alt="Hadithaki.ai Logo" class="w-full h-full object-contain">
                     </div>
@@ -105,8 +150,39 @@
         </div>
     </header>
 
+    <!-- Navigation Tabs -->
+    <section class="py-8 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex justify-center mb-8">
+                <div class="glass-effect rounded-2xl p-2 shadow-xl">
+                    <button 
+                        onclick="showSection('hero')" 
+                        id="heroTab" 
+                        class="px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 tab-active"
+                    >
+                        Home
+                    </button>
+                    <button 
+                        onclick="showSection('verify')" 
+                        id="verifyTab" 
+                        class="px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 tab-inactive"
+                    >
+                        Verify Hadith
+                    </button>
+                    <button 
+                        onclick="showSection('mood')" 
+                        id="moodTab" 
+                        class="px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 tab-inactive"
+                    >
+                        Find by Mood
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Hero Section -->
-    <section class="relative pt-20 pb-24 px-6 hero-pattern overflow-hidden">
+    <section id="heroSection" class="relative pt-12 pb-24 px-6 hero-pattern overflow-hidden">
         <div class="max-w-7xl mx-auto text-center relative z-10">
             <div class="mb-8">
                 <span class="inline-block bg-gradient-to-r from-emerald-500 to-green-600 text-white px-6 py-2 rounded-full text-sm font-semibold tracking-wide uppercase shadow-lg">
@@ -125,29 +201,30 @@
                 from trusted collections with scholar-grade accuracy.
             </p>
             
-            <!-- Compelling Waitlist CTA -->
+            <!-- CTA to Try Tool -->
             <div class="glass-effect rounded-3xl p-10 mb-20 max-w-3xl mx-auto glow-effect">
                 <div class="text-center">
                     <div class="mb-6">
                         <span class="inline-block bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-full text-xs font-bold tracking-wide uppercase animate-pulse">
-                            🔥 Early Access Only
+                            Try It Now - Free
                         </span>
                     </div>
                     <h3 class="text-4xl font-black text-gray-900 mb-4">"Is That Hadith Actually Authentic?"</h3>
-                    <p class="text-gray-700 text-xl mb-6 font-medium">Misleading quotes spread daily on social media, claiming to be authentic Hadiths. <span class="text-emerald-600 font-bold">Get instant verification from trusted sources instead of guessing.</span></p>
-                    <p class="text-gray-600 text-lg mb-8 font-light">Be among the first to access AI-powered Hadith verification when we launch.</p>
+                    <p class="text-gray-700 text-xl mb-6 font-medium">Stop guessing about hadith authenticity. <span class="text-emerald-600 font-bold">Get instant verification from trusted sources.</span></p>
                     
                     <div class="flex flex-col gap-4 justify-center items-center">
-                        <a href="https://hadithakhi.substack.com/?r=68n58b&utm_campaign=pub-share-checklist" target="_blank" rel="noopener noreferrer" class="inline-block bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-bold py-5 px-12 rounded-2xl button-hover text-lg shadow-xl">
-                            🚀 JOIN THE WAITLIST
-                        </a>
-                        <div class="text-sm text-gray-500">
-                            No credit card needed
-                        </div>
-                    </div>
-                    
-                    <div class="mt-8 text-sm text-gray-500 italic border-t border-gray-200 pt-6">
-                        *We respect your inbox. No spam, ever. Unsubscribe anytime.*
+                        <button 
+                            onclick="showSection('verify')" 
+                            class="inline-block bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-bold py-5 px-12 rounded-2xl button-hover text-lg shadow-xl"
+                        >
+                            Try Verification Tool
+                        </button>
+                        <button 
+                            onclick="showSection('mood')" 
+                            class="inline-block bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold py-4 px-10 rounded-2xl button-hover text-base shadow-lg"
+                        >
+                            Find Hadith by Mood
+                        </button>
                     </div>
                 </div>
             </div>
@@ -159,8 +236,113 @@
         <div class="absolute bottom-20 left-1/4 w-12 h-12 bg-emerald-400 rounded-full opacity-25 animate-float" style="animation-delay: 4s;"></div>
     </section>
 
-    <!-- Features Section -->
-    <section class="py-24 relative">
+    <!-- Verification Tool Section -->
+    <section id="verifySection" class="section-hidden py-16 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="glass-effect rounded-3xl p-8 mb-8 glow-effect">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 bg-gradient-to-br from-emerald-400 to-green-600 rounded-2xl flex items-center justify-center mr-6">
+                        <span class="text-white font-bold text-3xl">📚</span>
+                    </div>
+                    <div>
+                        <h2 class="text-4xl font-black text-gray-900">Verify Hadith Authenticity</h2>
+                        <p class="text-gray-600 text-lg font-light">Enter any hadith text to check its authenticity from trusted collections</p>
+                    </div>
+                </div>
+                
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-3 uppercase tracking-wide">
+                            Enter Hadith Text to Verify:
+                        </label>
+                        <textarea 
+                            id="hadithInput" 
+                            rows="5" 
+                            class="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:ring-4 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200 resize-none text-lg"
+                            placeholder="Enter the hadith text you want to verify...
+
+Example: 'The Prophet (peace be upon him) said: Actions are but by intention, and every man will have only what he intended...'"
+                        ></textarea>
+                        <p class="text-sm text-gray-500 mt-3 font-light">Tip: You can enter partial text or the complete hadith</p>
+                    </div>
+                    
+                    <button 
+                        onclick="verifyHadith()" 
+                        id="verifyButton"
+                        class="w-full bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-bold py-6 px-8 rounded-2xl transition-all duration-200 transform hover:scale-105 shadow-xl text-xl"
+                    >
+                        <span class="flex items-center justify-center">
+                            <span id="verifyButtonText">Verify Hadith Authenticity</span>
+                        </span>
+                    </button>
+                </div>
+                
+                <div id="verifyResult" class="mt-8 hidden"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mood Tool Section -->
+    <section id="moodSection" class="section-hidden py-16 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="glass-effect rounded-3xl p-8 mb-8 glow-effect">
+                <div class="flex items-center mb-8">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-2xl flex items-center justify-center mr-6">
+                        <span class="text-white font-bold text-3xl">💭</span>
+                    </div>
+                    <div>
+                        <h2 class="text-4xl font-black text-gray-900">Find Hadith by Your Mood</h2>
+                        <p class="text-gray-600 text-lg font-light">Get personalized Islamic guidance based on how you're feeling</p>
+                    </div>
+                </div>
+                
+                <!-- Quick Mood Options -->
+                <div class="mb-8">
+                    <p class="text-sm font-bold text-gray-700 mb-4 uppercase tracking-wide">Quick Mood Selection:</p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <button onclick="setMoodQuick('sad')" class="mood-btn glass-effect px-4 py-3 hover:bg-blue-100 rounded-xl text-base font-medium transition-all duration-200 hover:scale-105">😢 Sad</button>
+                        <button onclick="setMoodQuick('anxious')" class="mood-btn glass-effect px-4 py-3 hover:bg-blue-100 rounded-xl text-base font-medium transition-all duration-200 hover:scale-105">😰 Anxious</button>
+                        <button onclick="setMoodQuick('angry')" class="mood-btn glass-effect px-4 py-3 hover:bg-blue-100 rounded-xl text-base font-medium transition-all duration-200 hover:scale-105">😠 Angry</button>
+                        <button onclick="setMoodQuick('grateful')" class="mood-btn glass-effect px-4 py-3 hover:bg-blue-100 rounded-xl text-base font-medium transition-all duration-200 hover:scale-105">🙏 Grateful</button>
+                        <button onclick="setMoodQuick('lazy')" class="mood-btn glass-effect px-4 py-3 hover:bg-blue-100 rounded-xl text-base font-medium transition-all duration-200 hover:scale-105">😴 Lazy</button>
+                        <button onclick="setMoodQuick('confused')" class="mood-btn glass-effect px-4 py-3 hover:bg-blue-100 rounded-xl text-base font-medium transition-all duration-200 hover:scale-105">🤔 Confused</button>
+                        <button onclick="setMoodQuick('hopeful')" class="mood-btn glass-effect px-4 py-3 hover:bg-blue-100 rounded-xl text-base font-medium transition-all duration-200 hover:scale-105">✨ Hopeful</button>
+                        <button onclick="setMoodQuick('stressed')" class="mood-btn glass-effect px-4 py-3 hover:bg-blue-100 rounded-xl text-base font-medium transition-all duration-200 hover:scale-105">😓 Stressed</button>
+                    </div>
+                </div>
+                
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-3 uppercase tracking-wide">
+                            Or Describe Your Feelings in Detail:
+                        </label>
+                        <textarea 
+                            id="moodInput" 
+                            rows="4" 
+                            class="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:ring-4 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 resize-none text-lg"
+                            placeholder="I'm feeling sad today because... or I'm struggling with anger when... or I'm grateful for..."
+                        ></textarea>
+                        <p class="text-sm text-gray-500 mt-3 font-light">The more you share, the better guidance we can provide</p>
+                    </div>
+                    
+                    <button 
+                        onclick="findMoodHadith()" 
+                        id="moodButton"
+                        class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold py-6 px-8 rounded-2xl transition-all duration-200 transform hover:scale-105 shadow-xl text-xl"
+                    >
+                        <span class="flex items-center justify-center">
+                            <span id="moodButtonText">Find Relevant Hadith</span>
+                        </span>
+                    </button>
+                </div>
+                
+                <div id="moodResult" class="mt-8 hidden"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section (only visible on home) -->
+    <section id="featuresSection" class="py-24 relative">
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-16">
                 <h3 class="text-5xl font-black text-gray-900 mb-6">Why Choose Hadithakhi.ai?</h3>
@@ -254,14 +436,319 @@
             <div class="text-center">
                 <div class="flex items-center justify-center space-x-3 mb-4">
                     <div class="w-8 h-8">
-                        <img src="https://i.ibb.co/yJnzyhG/screen-svg.png" alt="Hadithakhi.ai Logo" class="w-full h-full object-contain">
+                        <svg viewBox="0 0 100 100" class="w-full h-full">
+                            <circle cx="50" cy="50" r="25" fill="none" stroke="#10b981" stroke-width="3"/>
+                            <path d="M 35 28 Q 32 22 38 32" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M 65 28 Q 68 22 62 32" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="42" cy="47" r="2" fill="#10b981"/>
+                            <circle cx="58" cy="47" r="2" fill="#10b981"/>
+                            <path d="M 50 53 L 48 57 L 52 57 Z" fill="#10b981"/>
+                        </svg>
                     </div>
                     <span class="text-xl font-bold text-gray-700">Hadithakhi.ai</span>
                 </div>
                 <p class="text-gray-500 font-light">&copy; 2024 Hadithakhi.ai. Bridging tradition with technology.</p>
+                <p class="text-sm text-gray-400 mt-2">Always consult qualified Islamic scholars for important religious matters.</p>
             </div>
         </div>
     </footer>
+
+    <script>
+        const API_BASE = 'http://localhost:8000/api/v1';
+        
+        // Section Navigation
+        function showSection(section) {
+            // Hide all sections
+            document.getElementById('heroSection').classList.add('section-hidden');
+            document.getElementById('verifySection').classList.add('section-hidden');
+            document.getElementById('moodSection').classList.add('section-hidden');
+            document.getElementById('featuresSection').classList.add('section-hidden');
+            
+            // Reset all tabs
+            const tabs = ['heroTab', 'verifyTab', 'moodTab'];
+            tabs.forEach(tab => {
+                document.getElementById(tab).className = 'px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 tab-inactive';
+            });
+            
+            // Show selected section and activate tab
+            if (section === 'hero') {
+                document.getElementById('heroSection').classList.remove('section-hidden');
+                document.getElementById('featuresSection').classList.remove('section-hidden');
+                document.getElementById('heroTab').className = 'px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 tab-active';
+            } else if (section === 'verify') {
+                document.getElementById('verifySection').classList.remove('section-hidden');
+                document.getElementById('verifyTab').className = 'px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 tab-active';
+            } else if (section === 'mood') {
+                document.getElementById('moodSection').classList.remove('section-hidden');
+                document.getElementById('moodTab').className = 'px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 tab-active';
+            }
+            
+            // Scroll to top of new section
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Quick mood selection
+        function setMoodQuick(mood) {
+            const moodInput = document.getElementById('moodInput');
+            const moodText = {
+                'sad': 'I am feeling sad and need comfort and hope',
+                'anxious': 'I am feeling anxious and worried about the future',
+                'angry': 'I am struggling with anger and need patience',
+                'grateful': 'I am feeling grateful and want to express my gratitude',
+                'lazy': 'I am feeling lazy and unmotivated, need inspiration',
+                'confused': 'I am feeling confused and need clarity in my decisions',
+                'hopeful': 'I am feeling hopeful and want to strengthen my faith',
+                'stressed': 'I am feeling stressed and overwhelmed with life'
+            };
+            
+            moodInput.value = moodText[mood] || mood;
+            
+            // Highlight selected mood button temporarily
+            event.target.classList.add('bg-blue-200');
+            setTimeout(() => {
+                event.target.classList.remove('bg-blue-200');
+            }, 1000);
+        }
+
+        // Loading state management
+        function setLoading(button, buttonText, isLoading) {
+            const btn = document.getElementById(button);
+            const text = document.getElementById(buttonText);
+            
+            if (isLoading) {
+                btn.disabled = true;
+                btn.classList.add('opacity-75', 'cursor-not-allowed');
+                text.innerHTML = '<div class="loading-spinner w-6 h-6 border-2 border-white border-t-transparent rounded-full inline-block mr-2"></div>Processing...';
+            } else {
+                btn.disabled = false;
+                btn.classList.remove('opacity-75', 'cursor-not-allowed');
+                text.innerHTML = button === 'verifyButton' ? 'Verify Hadith Authenticity' : 'Find Relevant Hadith';
+            }
+        }
+
+        // Hadith Verification Function
+        async function verifyHadith() {
+            const input = document.getElementById('hadithInput').value.trim();
+            const resultDiv = document.getElementById('verifyResult');
+            
+            if (!input) {
+                alert('Please enter a hadith to verify');
+                return;
+            }
+            
+            setLoading('verifyButton', 'verifyButtonText', true);
+            
+            // Show loading state
+            resultDiv.innerHTML = `
+                <div class="glass-effect rounded-2xl p-8 text-center">
+                    <div class="loading-spinner w-16 h-16 border-4 border-emerald-600 border-t-transparent rounded-full mx-auto mb-6"></div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Analyzing Hadith Authenticity</h3>
+                    <p class="text-gray-600 text-lg">Searching through our authenticated collections...</p>
+                    <p class="text-gray-500 text-sm mt-2">This may take a few seconds</p>
+                </div>
+            `;
+            resultDiv.classList.remove('hidden');
+            
+            try {
+                const response = await fetch(`${API_BASE}/verify`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ text: input })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                
+                const result = await response.json();
+                displayVerificationResult(result);
+                
+            } catch (error) {
+                console.error('Error:', error);
+                resultDiv.innerHTML = `
+                    <div class="glass-effect rounded-2xl p-8 border-2 border-red-200">
+                        <div class="text-center">
+                            <div class="text-6xl mb-4">⚠️</div>
+                            <h3 class="text-2xl font-bold text-red-800 mb-4">Connection Error</h3>
+                            <p class="text-red-700 mb-4">Could not connect to the verification service. Please make sure your FastAPI backend is running on http://localhost:8000</p>
+                            <p class="text-sm text-red-600">Check the console for detailed error information.</p>
+                        </div>
+                    </div>
+                `;
+            } finally {
+                setLoading('verifyButton', 'verifyButtonText', false);
+            }
+        }
+
+        // Mood-based Hadith Function
+        async function findMoodHadith() {
+            const input = document.getElementById('moodInput').value.trim();
+            const resultDiv = document.getElementById('moodResult');
+            
+            if (!input) {
+                alert('Please describe your mood or feeling');
+                return;
+            }
+            
+            setLoading('moodButton', 'moodButtonText', true);
+            
+            // Show loading state
+            resultDiv.innerHTML = `
+                <div class="glass-effect rounded-2xl p-8 text-center">
+                    <div class="loading-spinner w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full mx-auto mb-6"></div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Finding Perfect Hadith for You</h3>
+                    <p class="text-gray-600 text-lg">Analyzing your mood and matching with relevant wisdom...</p>
+                    <p class="text-gray-500 text-sm mt-2">Searching our collection of authenticated hadith</p>
+                </div>
+            `;
+            resultDiv.classList.remove('hidden');
+            
+            try {
+                const response = await fetch(`${API_BASE}/mood`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ mood: input })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                
+                const result = await response.json();
+                displayMoodResult(result);
+                
+            } catch (error) {
+                console.error('Error:', error);
+                resultDiv.innerHTML = `
+                    <div class="glass-effect rounded-2xl p-8 border-2 border-red-200">
+                        <div class="text-center">
+                            <div class="text-6xl mb-4">⚠️</div>
+                            <h3 class="text-2xl font-bold text-red-800 mb-4">Connection Error</h3>
+                            <p class="text-red-700 mb-4">Could not connect to the mood analysis service. Please make sure your FastAPI backend is running on http://localhost:8000</p>
+                            <p class="text-sm text-red-600">Check the console for detailed error information.</p>
+                        </div>
+                    </div>
+                `;
+            } finally {
+                setLoading('moodButton', 'moodButtonText', false);
+            }
+        }
+
+        // Display Verification Result
+        function displayVerificationResult(result) {
+            const resultDiv = document.getElementById('verifyResult');
+            
+            const statusColor = result.is_authentic ? 'emerald' : 'red';
+            const statusIcon = result.is_authentic ? '✅' : '❌';
+            const statusText = result.is_authentic ? 'Authentic Hadith' : 'Not Found or Uncertain';
+            
+            resultDiv.innerHTML = `
+                <div class="glass-effect rounded-2xl p-8 border-2 border-${statusColor}-200 fade-in">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center">
+                            <div class="text-4xl mr-4">${statusIcon}</div>
+                            <div>
+                                <h3 class="text-2xl font-black text-${statusColor === 'emerald' ? 'green' : 'red'}-800">${statusText}</h3>
+                                <p class="text-gray-600">Confidence Level: <span class="font-bold">${result.confidence}%</span></p>
+                            </div>
+                        </div>
+                        <div class="bg-${statusColor}-100 text-${statusColor === 'emerald' ? 'green' : 'red'}-800 px-4 py-2 rounded-xl font-bold text-lg">
+                            ${result.confidence}%
+                        </div>
+                    </div>
+                    
+                    ${result.is_authentic ? `
+                        <div class="space-y-6">
+                            <div class="bg-white bg-opacity-50 rounded-xl p-6">
+                                <h4 class="font-black text-gray-900 mb-3 text-lg">📖 Source Information</h4>
+                                <p class="text-gray-700 font-medium">${result.source}</p>
+                                <p class="text-emerald-700 font-bold mt-2">Grade: ${result.grade}</p>
+                            </div>
+                            
+                            <div class="bg-white bg-opacity-50 rounded-xl p-6">
+                                <h4 class="font-black text-gray-900 mb-3 text-lg">📜 Authentic Text</h4>
+                                <p class="text-gray-800 text-lg italic leading-relaxed">"${result.exact_text}"</p>
+                            </div>
+                            
+                            ${result.arabic_text ? `
+                                <div class="bg-white bg-opacity-50 rounded-xl p-6">
+                                    <h4 class="font-black text-gray-900 mb-3 text-lg">🕌 Arabic Text</h4>
+                                    <p class="arabic-text text-gray-800 text-right text-xl leading-loose" dir="rtl">${result.arabic_text}</p>
+                                </div>
+                            ` : ''}
+                            
+                            <div class="bg-white bg-opacity-50 rounded-xl p-6">
+                                <h4 class="font-black text-gray-900 mb-3 text-lg">💡 Explanation</h4>
+                                <p class="text-gray-700 leading-relaxed">${result.explanation}</p>
+                            </div>
+                            
+                            <div class="bg-emerald-50 rounded-xl p-6 border-2 border-emerald-200">
+                                <h4 class="font-black text-emerald-800 mb-3 text-lg">🌟 Practical Application</h4>
+                                <p class="text-emerald-700 leading-relaxed">${result.practical_application}</p>
+                            </div>
+                        </div>
+                    ` : `
+                        <div class="bg-white bg-opacity-50 rounded-xl p-6">
+                            <p class="text-red-800 text-lg font-medium">${result.message}</p>
+                            ${result.suggestion ? `<p class="text-red-600 mt-4">${result.suggestion}</p>` : ''}
+                            <div class="mt-6 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                                <p class="text-yellow-800 text-sm"><strong>Note:</strong> This tool searches through major hadith collections. If no match is found, please consult with qualified Islamic scholars for verification.</p>
+                            </div>
+                        </div>
+                    `}
+                </div>
+            `;
+        }
+
+        // Display Mood Result
+        function displayMoodResult(result) {
+            const resultDiv = document.getElementById('moodResult');
+            
+            resultDiv.innerHTML = `
+                <div class="glass-effect rounded-2xl p-8 border-2 border-blue-200 fade-in">
+                    <div class="flex items-center mb-6">
+                        <div class="text-4xl mr-4">💝</div>
+                        <div>
+                            <h3 class="text-2xl font-black text-blue-800">Hadith for Your Heart</h3>
+                            <p class="text-gray-600">Personalized guidance for: <span class="font-bold">${result.mood_detected}</span></p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-200">
+                            <h4 class="font-black text-gray-900 mb-4 text-lg">📿 Relevant Hadith</h4>
+                            <p class="text-gray-800 text-xl italic leading-relaxed mb-4">"${result.hadith.text}"</p>
+                            
+                            ${result.hadith.arabic ? `
+                                <div class="mt-4 pt-4 border-t border-blue-200">
+                                    <p class="arabic-text text-gray-800 text-right text-xl leading-loose" dir="rtl">${result.hadith.arabic}</p>
+                                </div>
+                            ` : ''}
+                        </div>
+                        
+                        <div class="bg-white bg-opacity-50 rounded-xl p-6">
+                            <h4 class="font-black text-gray-900 mb-3 text-lg">📚 Source</h4>
+                            <p class="text-gray-700">${result.hadith.source}</p>
+                            <p class="text-blue-700 font-bold mt-1">Grade: ${result.hadith.grade}</p>
+                        </div>
+                        
+                        <div class="bg-white bg-opacity-50 rounded-xl p-6">
+                            <h4 class="font-black text-gray-900 mb-3 text-lg">🎯 Why This Hadith</h4>
+                            <p class="text-gray-700 leading-relaxed">${result.relevance_explanation}</p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl p-6 border-2 border-indigo-200">
+                            <h4 class="font-black text-indigo-800 mb-3 text-lg">🤔 Reflection Question</h4>
+                            <p class="text-indigo-700 leading-relaxed font-medium">${result.personal_reflection}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
 </body>
 </html>
-
